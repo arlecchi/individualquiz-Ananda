@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Events</title>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>Sports Events</h1>
+    
+    <label for="sport-select">Select a sport:</label>
+    <select id="sport-select" onchange="fetchEvents()">
+        <option value="">-- Choose a sport --</option>
+    </select>
+
+    <div id="events-container"></div>
+
+</body>
+</html>

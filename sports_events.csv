@@ -1,0 +1,16 @@
+event_id,event_name,sport_type,date,venue,total_seats,available_seats,created_by
+1,Basketball Championship 1,Basketball,2025-03-24,Arena B,167,22,Mia White
+2,Tennis Championship 2,Tennis,2025-03-23,Court C,167,27,Isabella Thomas
+3,Swimming Championship 3,Swimming,2025-05-07,Pool D,155,20,Emma Johnson
+4,Athletics Championship 4,Athletics,2025-04-27,Track E,127,20,Isabella Thomas
+5,Football Championship 5,Football,2025-05-12,Stadium A,93,35,James Wilson
+6,Basketball Championship 6,Basketball,2025-04-29,Arena B,146,37,James Wilson
+7,Tennis Championship 7,Tennis,2025-04-23,Court C,91,29,Michael Brown
+8,Swimming Championship 8,Swimming,2025-04-13,Pool D,95,49,Emma Johnson
+9,Athletics Championship 9,Athletics,2025-04-27,Track E,156,37,Benjamin Harris
+10,Football Championship 10,Football,2025-04-01,Stadium A,176,50,Michael Brown
+11,Basketball Championship 11,Basketball,2025-04-28,Arena B,132,28,Michael Brown
+12,Tennis Championship 12,Tennis,2025-04-23,Court C,127,10,William Anderson
+13,Swimming Championship 13,Swimming,2025-04-07,Pool D,158,41,Michael Brown
+14,Athletics Championship 14,Athletics,2025-03-30,Track E,85,49,Isabella Thomas
+15,Football Championship 15,Football,2025-04-24,Stadium A,57,30,Michael Brown
