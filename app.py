@@ -1,17 +1,16 @@
 from flask import Flask, request, jsonify, render_template
-import pymysql
+import csv
 
 app = Flask(__name__)
 
-# Database connection
-def get_db_connection():
-    return pymysql.connect(
-        host="127.0.0.1",
-        user="root",
-        password="",
-        database="quiz",
-        port=3307
-    )
+# Load CSV data into memory
+sports_events = []
+csv_file_path = "sports_events.csv"  # Change this if needed
+
+with open(csv_file_path, newline="", encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        sports_events.append(row)
 
 # Route to serve the HTML page
 @app.route("/")
@@ -21,11 +20,7 @@ def index():
 # Route to get unique sports
 @app.route("/sports")
 def get_sports():
-    connection = get_db_connection()
-    cursor = connection.cursor()
-    cursor.execute("SELECT DISTINCT sport_type FROM sports_events")
-    sports = [row[0] for row in cursor.fetchall()]
-    connection.close()
+    sports = sorted(set(event["sport_type"] for event in sports_events))
     return jsonify(sports)
 
 # Route to get events by sport
@@ -35,19 +30,20 @@ def get_events():
     if not sport:
         return jsonify({"error": "Sport not provided"}), 400
 
-    connection = get_db_connection()
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT event_id, event_name, date, venue, total_seats, available_seats
-        FROM sports_events WHERE sport_type = %s ORDER BY date ASC
-    """, (sport,))
-    events = cursor.fetchall()
-    connection.close()
+    filtered_events = [
+        {
+            "event_id": event["event_id"],
+            "event_name": event["event_name"],
+            "date": event["date"],
+            "venue": event["venue"],
+            "total_seats": event["total_seats"],
+            "available_seats": event["available_seats"],
+        }
+        for event in sports_events
+        if event["sport_type"] == sport
+    ]
 
-    return jsonify([
-        {"event_id": row[0], "event_name": row[1], "date": row[2], "venue": row[3], "total_seats": row[4], "available_seats": row[5]}
-        for row in events
-    ])
+    return jsonify(filtered_events)
 
 if __name__ == "__main__":
     app.run(debug=True)
