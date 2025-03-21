@@ -9,6 +9,6 @@ Showing all Basketball events
 
 to run app: run 
 # python app.py 
-open 
+then open 
 # http://127.0.0.1:5000
 in browser
